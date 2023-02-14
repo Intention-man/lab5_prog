@@ -1,5 +1,9 @@
 package enums;
 
+/**
+ *    Enum, containing some countries names
+ * */
+
 public enum Country {
     FRANCE,
     INDIA,

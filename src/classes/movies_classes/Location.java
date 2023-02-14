@@ -2,47 +2,49 @@ package classes.movies_classes;
 
 import org.simpleframework.xml.Element;
 
+/**
+ *    Location<T, U, S> - unnecessary to use class, created specially for Person
+ *    @param  {T} locX
+ *    @param  {U} locY
+ *    @param  {S} locZ
+ * */
 
-
-public class Location {
+public class Location<T, U, S> {
     @Element(required=false, name = "locX")
-    private long locX;
+    private T locX;
     @Element(required=false, name = "locY")
-    private long locY;
+    private U locY;
     @Element(required=false, name = "locZ")
-    private double locZ;
+    private S locZ;
 
-    public Location(long locX, long locY, double locZ){
+    public Location(){}
+
+    public Location(@Element(required=false, name = "locX")T locX, @Element(required=false, name = "locY") U locY, @Element(required=false, name = "locZ") S locZ){
         this.locX = locX;
         this.locY = locY;
         this.locZ = locZ;
     }
 
-//    public Location(@Element(name="x") long x, @Element(name="y") long y, @Element(name="z") double z){
-//        this.x = x;
-//        this.y = y;
-//        this.z = z;
-//    }
 
 //    public Location(List list)
 //    {
 //        System.out.println("I'm in location's constructor");
-//        if (list.get(0).toString().matches("\\d*")) {this.x = (long) list.get(0);};
-//        if (list.get(1).toString().matches("\\d*")) {this.y = (long) list.get(1);};
-//        if (list.get(2).toString().matches("\\d*.\\d*")) {this.z = (double) list.get(2);};
+//        if (list.get(0).toString().matches("\\d*")) {this.locX = (long) list.get(0);};
+//        if (list.get(1).toString().matches("\\d*")) {this.locY = (long) list.get(1);};
+//        if (list.get(2).toString().matches("\\d*.\\d*")) {this.locZ = (double) list.get(2);};
 //    }
 
 
 
-    public long getX() {
+    public T getLocX() {
         return locX;
     }
 
-    public long getY() {
+    public U getLocY() {
         return locY;
     }
 
-    public double getZ() {
+    public S getLocZ() {
         return locZ;
     }
 }

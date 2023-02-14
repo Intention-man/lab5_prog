@@ -1,23 +1,29 @@
 package classes.movies_classes;
 
-import enums.Country;
 import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Root;
 
-import java.util.List;
+/**
+ *    Person<N> - created specially for Movie
+ *    @param  {String} name
+ *    @param  {String} passportID
+ *    @param  {N} nationality
+ *    @param  {Location} location
+ * */
 
-
-public class Person {
+public class Person<N>{
     @Element(name="name")
     private String name; //Поле не может быть null, Строка не может быть пустой
     @Element(name="passportID")
     private String passportID; //Длина строки должна быть не меньше 9, Строка не может быть пустой, Поле может быть null
-    @Element(required=false)
-    private Country nationality; //Поле может быть null
-    @Element(required=false)
+    @Element(name="nationality", required=false)
+    private N nationality; //Поле может быть null
+    @Element(name="location", required=false)
     private Location location; //Поле может быть null
 
-    public Person(String name, String passportID, Country nationality, Location location)
+
+    public Person(){}
+
+    public Person(String name, String passportID, N nationality, Location location)
     {
      this.name = name;
      this.passportID = passportID;
@@ -42,7 +48,7 @@ public class Person {
         return passportID;
     }
 
-    public Country getNationality() {
+    public N getNationality() {
         return nationality;
     }
 
