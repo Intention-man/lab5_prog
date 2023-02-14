@@ -10,13 +10,20 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
+/**
+ *    Console App Component, working with files: read, write and execute their.
+ *    His methods called by Receiver.
+ *    It manages collection movies, as every functional components.
+ * */
+
+
 public class FileWorker {
 
     // initialization
 
     private static Movies movies;
-    static String xmlFile = System.getenv("FileForLab5");
-    static Path path = Paths.get(xmlFile);
+    static String xmlFileName = System.getenv("FileForLab5");
+    static Path path = Paths.get(xmlFileName);
     static Serializer serializer = new Persister();
     static Scanner scanner;
 
@@ -32,11 +39,12 @@ public class FileWorker {
 
     public static Movies fill() {
         try {
-            Movies movies1 = serializer.read(Movies.class, new File(xmlFile));
+            Movies movies1 = serializer.read(Movies.class, new File(xmlFileName));
             return movies1;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            System.out.println("Не существует файла с таким адресом он недоступен для чтения");
         }
+        return null;
     }
 
     public static void manageClass(Movies movies){
@@ -52,20 +60,22 @@ public class FileWorker {
             while (fileScanner.hasNextLine()) {
                 String line = fileScanner.nextLine();
                 Receiver.startNewAction(line);
-//                System.out.println(line);
             }
             fileScanner.close();
             Receiver.chosenScanner = new Scanner(System.in);
 
         } catch (Exception ex) {
-            ex.printStackTrace();
+            System.out.println("Не существует файла с таким адресом он недоступен для чтения");
         }
     }
 
-    public static void save() throws Exception {
-        serializer.write(movies, new File(xmlFile));
-        //построчно считываем файл
-//        scanner.useDelimiter(System.getProperty("line.separator"));
+    public static void save() {
+        try {
+            serializer.write(movies, new File(xmlFileName));
+        } catch (Exception e) {
+            System.out.println("Ошибка при сохранении коллекции в файл. Узнайте у разработчика в чем дело)");
+        }
+
     }
 
 

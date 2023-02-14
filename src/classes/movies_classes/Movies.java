@@ -7,9 +7,16 @@ import org.simpleframework.xml.Root;
 import java.util.*;
 
 
-@Root
+/**
+ *    Movie - Movie collection class
+ *    @param  {HashSet<Movie>} moviesList
+ *    @param  {java.util.Date} initializationDate
+ * */
+
+@Root(name="movies")
 public class Movies {
-    @ElementList
+
+    @ElementList(name="moviesList")
     private HashSet<Movie> moviesList = new HashSet<>();
     @Attribute
     private java.util.Date initializationDate;

@@ -5,6 +5,17 @@ import classes.movies_classes.Movies;
 
 import java.util.Objects;
 
+/**
+ *   Main!
+ *   Starts the program. Ask FileWorker to fill a Movie's collection from file and transfers a file to functional components to management.
+ *   Catches exceptions if they are.
+ *
+ *   Project info:
+ *
+ * @author Михаил Агей P3117
+ * @since February 2023
+ * */
+
 
 public class Main {
     public static void main(String[] args) {
@@ -23,7 +34,7 @@ public class Main {
                 Receiver.suggestNewAction();
             }
         } catch (Exception e) {
-            System.out.println(e.getLocalizedMessage());
+            System.out.println("Проверьте, что правильно указали название (адрес) файла, из которого считывается коллекция");
         }
     }
 }
