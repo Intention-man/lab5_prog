@@ -11,38 +11,31 @@ import java.util.HashMap;
 import java.util.List;
 
 
-@Root(strict=false)
+@Root
 public class Movie {
-    @Element
+    @Element(name="id")
     private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     @Element(name="name")
     private String name; //Поле не может быть null, Строка не может быть пустой
-    @Element
-    private Coordinates coordinates; //Поле не может быть null
-    @Element
+    @Element(name="creationDate")
     private java.util.Date creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
-    @Element
+    @Element(name="oscarsCount")
     private long oscarsCount; //Значение поля должно быть больше 0
-    @Element
+    @Element(name="length")
     private long length; //Значение поля должно быть больше 0
 
-    @Element(required=false, name="genre", type=MovieGenre.class)
+    @Element(required=false, name="genre")
     private MovieGenre genre; //Поле может быть null
-    @Element(required=false, type=MpaaRating.class)
+    @Element(required=false, name="mpaaRating")
     private MpaaRating mpaaRating; //Поле может быть null
-    @Element(required=false)
+    @Element(required=false, name="operator")
     private Person operator; //Поле может быть null
 
+    @Element(name="coordinates")
+    private Coordinates coordinates; //Поле не может быть null
 
-    public Movie(@Element int id,
-                 @Element String name,
-                 @Element Coordinates coordinates,
-                 @Element java.util.Date creationDate,
-                 @Element long oscarsCount,
-                 @Element long length,
-                 @Element(required=false) MovieGenre genre,
-                 @Element(required=false) MpaaRating mpaaRating,
-                 @Element(required=false) Person operator)
+
+    public Movie(int id, String name, Coordinates coordinates, java.util.Date creationDate, long oscarsCount, long length, MovieGenre genre, MpaaRating mpaaRating, Person operator)
     {
         this.id = id;
         this.name = name;

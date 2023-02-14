@@ -10,8 +10,8 @@ public class Main {
     public static void main(String[] args) {
 
         try {
-            Movies movies = new Movies();
-            // Movies movies = FileWorker.fill();
+//            Movies movies = new Movies();
+            Movies movies = FileWorker.fill();
 
             Receiver.manageClass(movies);
             Handler.manageClass(movies);

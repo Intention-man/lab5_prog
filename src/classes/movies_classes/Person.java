@@ -6,7 +6,7 @@ import org.simpleframework.xml.Root;
 
 import java.util.List;
 
-@Root
+
 public class Person {
     @Element(name="name")
     private String name; //Поле не может быть null, Строка не может быть пустой
@@ -17,10 +17,7 @@ public class Person {
     @Element(required=false)
     private Location location; //Поле может быть null
 
-    public Person(@Element(name="name") String name,
-                  @Element(name="passportID") String passportID,
-                  @Element(required=false) Country nationality,
-                  @Element(required=false) Location location)
+    public Person(String name, String passportID, Country nationality, Location location)
     {
      this.name = name;
      this.passportID = passportID;

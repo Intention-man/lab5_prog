@@ -4,22 +4,22 @@ import org.simpleframework.xml.Element;
 
 public class Coordinates {
 
-    @Element(name="coord_x")
-    private Integer x;//Значение поля должно быть больше -319, Поле не может быть null
-    @Element(name="coord_y")
-    private int y;
+    @Element(name="coordX")
+    private Integer coordX;//Значение поля должно быть больше -319, Поле не может быть null
+    @Element(name="coordY")
+    private int coordY;
 
-    public Coordinates(@Element(name="coord_x") Integer x, @Element(name="coord_y") int y)
+    public Coordinates(Integer coordX, int coordY)
     {
-        this.x = x;
-        this.y = y;
+        this.coordX = coordX;
+        this.coordY = coordY;
     }
 
     public Integer getX() {
-        return x;
+        return coordX;
     }
 
     public int getY() {
-        return y;
+        return coordY;
     }
 }

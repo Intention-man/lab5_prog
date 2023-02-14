@@ -1,22 +1,21 @@
 package classes.movies_classes;
 
 import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Root;
 
 
-@Root
+
 public class Location {
-    @Element(required=false, name = "loc_x")
-    private long x;
-    @Element(required=false, name = "loc_y")
-    private long y;
-    @Element(required=false, name = "loc_z")
-    private double z;
+    @Element(required=false, name = "locX")
+    private long locX;
+    @Element(required=false, name = "locY")
+    private long locY;
+    @Element(required=false, name = "locZ")
+    private double locZ;
 
-    public Location(@Element(required=false) long x, @Element(required=false) long y, @Element(required=false) double z){
-        this.x = x;
-        this.y = y;
-        this.z = z;
+    public Location(long locX, long locY, double locZ){
+        this.locX = locX;
+        this.locY = locY;
+        this.locZ = locZ;
     }
 
 //    public Location(@Element(name="x") long x, @Element(name="y") long y, @Element(name="z") double z){
@@ -36,14 +35,14 @@ public class Location {
 
 
     public long getX() {
-        return x;
+        return locX;
     }
 
     public long getY() {
-        return y;
+        return locY;
     }
 
     public double getZ() {
-        return z;
+        return locZ;
     }
 }
