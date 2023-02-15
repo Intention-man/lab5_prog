@@ -26,6 +26,7 @@ public class Receiver {
     static Scanner chosenScanner = new Scanner(System.in);
     static String executedCommand;
 
+    private static List<String> executedFiles = new ArrayList<>();
 
     static HashMap<String, String> commandList = new HashMap<>();
 
@@ -81,9 +82,13 @@ public class Receiver {
     public static void startNewAction(String executedCommand) throws Exception {
         try {
             Handler.addCommandToHistory(executedCommand.split(" ")[0]);
-            if (Objects.equals(executedCommand.split(" ")[0], "execute_script")) {
+            if (Objects.equals(executedCommand.split(" ")[0], "execute_script") && !chosenScanner.equals(new Scanner(System.in)) && executedFiles.contains(executedCommand.split(" ")[1])) {
+                System.out.println("Рекурсия! Страшнааааа... Но это тоже обработано, уберите запуск файла в файле и продолжайте работу)");
+                return;
+            } else if (Objects.equals(executedCommand.split(" ")[0], "execute_script") && (chosenScanner.equals(new Scanner(System.in)) || !executedFiles.contains(executedCommand.split(" ")[1]))) {
                 Path path = Paths.get(executedCommand.split(" ")[1]);
                 chosenScanner = new Scanner(path);
+                executedFiles.add(executedCommand.split(" ")[1]);
             }
             switch (executedCommand.split(" ")[0]) {
                 case ("help") -> help();
@@ -93,7 +98,7 @@ public class Receiver {
                 case ("add_if_min") -> Handler.addIfMin(readInputNewMovieData());
                 case ("clear") -> Handler.clear();
                 case ("history") -> System.out.println(Handler.getLast12Commands());
-                case ("execute_script") -> FileWorker.readFile(chosenScanner);
+                case ("execute_script") -> FileWorker.readFile(chosenScanner, executedCommand.split(" ")[1]);
                 case ("save") -> FileWorker.save();
                 case ("show") -> show();
                 case ("sum_of_length") -> System.out.println(Handler.sumOfLength());
@@ -235,6 +240,7 @@ public class Receiver {
         for (Movie movie : movies.getSortedMovies()) {
             System.out.println(movie.getId() + " - " + movie.getName());
         }
+        System.out.println("Исполняемые в данный момент файлы: " + getExecutedFiles());
     }
 
     public static void show() {
@@ -249,5 +255,9 @@ public class Receiver {
 
     public static String getExecutedCommand() {
         return executedCommand;
+    }
+
+    public static List getExecutedFiles() {
+        return executedFiles;
     }
 }

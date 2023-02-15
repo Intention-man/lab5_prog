@@ -21,6 +21,8 @@ public class FileWorker {
 
     // initialization
 
+
+
     private static Movies movies;
     static String xmlFileName = System.getenv("FileForLab5");
     static Path path = Paths.get(xmlFileName);
@@ -54,7 +56,7 @@ public class FileWorker {
     // commands execution
 
 
-    public static void readFile(Scanner fileScanner) {
+    public static void readFile(Scanner fileScanner, String fileName) {
         try {
 
             while (fileScanner.hasNextLine()) {
@@ -62,6 +64,7 @@ public class FileWorker {
                 Receiver.startNewAction(line);
             }
             fileScanner.close();
+            Receiver.getExecutedFiles().remove(fileName);
             Receiver.chosenScanner = new Scanner(System.in);
 
         } catch (Exception ex) {
@@ -77,6 +80,5 @@ public class FileWorker {
         }
 
     }
-
 
 }

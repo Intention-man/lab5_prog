@@ -33,7 +33,7 @@ public class Main {
                 Receiver.startNewAction(Receiver.getExecutedCommand());
                 Receiver.suggestNewAction();
             }
-        } catch (Exception e) {
+        } catch (Exception | ExceptionInInitializerError e) {
             System.out.println("Проверьте, что правильно указали название (адрес) файла, из которого считывается коллекция");
         }
     }
